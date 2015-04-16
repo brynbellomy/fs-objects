@@ -1,0 +1,13 @@
+{   "folders": [
+        {
+            "path": ".",
+            // "folder_exclude_patterns": [ "node_modules" ],
+            // "folder_include_patterns": [ "bin", "build", "src", "views", "posts", "posts/*", "public", "typings" ],
+            // "file_include_patterns": [ "posts/*.md" ],
+            // "file_exclude_patterns": [ "node_modules/**/*.md" ],
+            "folder_exclude_patterns": [ ".git", "public/bootstrap", "node_modules" ],
+            "name": "fs-objects"
+        }
+    ]
+ }
+

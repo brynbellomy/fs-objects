@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "declaration": true,
+        "sourceMap": true,
+        "outDir": "build/"
+    },
+    "files": [
+        "src/index.ts"
+      , "src/common.ts"
+      , "src/FSObject.ts"
+      , "src/FSPath.ts"
+      , "src/File.ts"
+      , "src/Directory.ts"
+
+      , "typings/tsd.d.ts"
+    ]
+}
