@@ -8,6 +8,7 @@ all: .FORCE
 
 build:
 	tsc --project .
+	cp ./src/d.ts/*.d.ts ./build/
 
 clean:
 	rm -rf build
