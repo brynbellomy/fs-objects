@@ -12,6 +12,7 @@ declare module "fs-objects/FileCollection"
         files: File[];
         filenames: string[];
         contains(filename: string): boolean;
+        objectNamed (filename:string): FSObject;
         filter(predicate: FileCollection.FilterPredicate): FileCollection;
     }
 

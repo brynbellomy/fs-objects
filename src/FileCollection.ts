@@ -1,8 +1,6 @@
 
 import _ = require('lodash')
-
 import FSObject = require('./FSObject')
-import File = require('./File')
 
 
 export = FileCollection
@@ -19,8 +17,12 @@ class FileCollection
         return this.files.map(transform)
     }
 
-    get files():     File[]   { return <File[]> _.valuesIn(this.listing) }
+    get files():     FSObject[]   { return <FSObject[]> _.valuesIn(this.listing) }
     get filenames(): string[] { return _.keysIn(this.listing) }
+
+    objectNamed (filename:string): FSObject {
+        return this.listing[filename]
+    }
 
     contains (filename:string): boolean {
         return !!this.listing[filename]

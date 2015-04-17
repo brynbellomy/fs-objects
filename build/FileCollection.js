@@ -16,6 +16,9 @@ var FileCollection = (function () {
         enumerable: true,
         configurable: true
     });
+    FileCollection.prototype.objectNamed = function (filename) {
+        return this.listing[filename];
+    };
     FileCollection.prototype.contains = function (filename) {
         return !!this.listing[filename];
     };
