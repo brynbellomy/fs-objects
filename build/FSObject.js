@@ -2,24 +2,31 @@ var fs = require('fs');
 var when = require('when');
 var whenNode = require('when/node');
 var $fs = whenNode.liftAll(fs);
+var Path = require('./FSPath');
 var common = require('./common');
 var typeToString = common.typeToString;
 var FSObject = (function () {
     function FSObject(p, type) {
+        var thePath = (typeof p === 'string') ? new Path(p) : p;
         // check that it exists
-        if (p.exists() !== true) {
-            console.error("Tried to instantiate non-hypothetical FSObject (type: " + typeToString(type) + ") but the path does not exist. (path = " + p.pathString + ")");
-            throw new Error("Tried to instantiate non-hypothetical FSObject (type: " + typeToString(type) + ") but the path does not exist. (path = " + p.pathString + ")");
+        if (thePath.exists() !== true) {
+            console.error("Tried to instantiate non-hypothetical FSObject (type: " + typeToString(type) + ") but the path does not exist. (path = " + thePath.pathString + ")");
+            throw new Error("Tried to instantiate non-hypothetical FSObject (type: " + typeToString(type) + ") but the path does not exist. (path = " + thePath.pathString + ")");
         }
         // check that the type matches the real file
-        var actualType = p.type();
+        var actualType = thePath.type();
         if (actualType !== type) {
-            console.error("Tried to instantiate non-hypothetical FSObject (type: " + typeToString(type) + ") but existing path is a " + typeToString(actualType) + ". (path = " + p.pathString + ")");
-            throw new Error("Tried to instantiate non-hypothetical FSObject (type: " + typeToString(type) + ") but existing path is a " + typeToString(actualType) + ". (path = " + p.pathString + ")");
+            console.error("Tried to instantiate non-hypothetical FSObject (type: " + typeToString(type) + ") but existing path is a " + typeToString(actualType) + ". (path = " + thePath.pathString + ")");
+            throw new Error("Tried to instantiate non-hypothetical FSObject (type: " + typeToString(type) + ") but existing path is a " + typeToString(actualType) + ". (path = " + thePath.pathString + ")");
         }
-        this.path = p;
+        this.path = thePath;
         this.type = type;
     }
+    Object.defineProperty(FSObject.prototype, "pathString", {
+        get: function () { return this.path.pathString; },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(FSObject.prototype, "basename", {
         get: function () { return this.path.basename; },
         enumerable: true,

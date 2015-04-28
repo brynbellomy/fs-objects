@@ -3,21 +3,21 @@ import _ = require('lodash')
 import fs = require('fs')
 import when = require('when')
 import whenNode = require('when/node')
-var $fs = whenNode.liftAll(fs)
+var $fs: any = whenNode.liftAll(fs)
 
 import FSObject = require('./FSObject')
 import Path = require('./FSPath')
 import File = require('./File')
 import FileCollection = require('./FileCollection')
-import common = require('./common')
+import {Type, createFSObjectsFromPathsSync} from './common'
 
 
 export = Directory
 
 class Directory extends FSObject
 {
-    constructor(path:Path) {
-        super(path, common.Type.Directory)
+    constructor(path:Path|string) {
+        super(path, Type.Directory)
     }
 
     refresh(): void {
@@ -73,7 +73,7 @@ class Directory extends FSObject
 
     private filenamesToFileCollection(filenames:string[]): FileCollection {
         var filepaths = filenames.map((filename) => this.subpath(filename))
-        var fsobjs = common.createFSObjectsFromPathsSync(filepaths)
+        var fsobjs = createFSObjectsFromPathsSync(filepaths)
 
         var contents: FileCollection.Listing = {}
         for (let fsobj of fsobjs) {

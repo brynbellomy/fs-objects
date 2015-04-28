@@ -10,7 +10,7 @@ declare module "fs-objects/Directory"
 
     export = Directory;
     class Directory extends FSObject {
-        constructor(path: Path);
+        constructor(path: Path|string);
         refresh(): void;
         subpath(filename: string): Path;
         contains(filename: string): boolean;

@@ -36,6 +36,22 @@ class Path
     get extname():  string { return path.extname(this.pathString) }
     get dirname():  string { return path.dirname(this.pathString) }
 
+    transposedToNewParentDir (parent: string|Path): Path {
+        var p: Path
+        if (typeof parent === 'string') {
+            p = new Path(parent)
+        }
+        else { p = parent }
+
+        return p.push(this.basename)
+    }
+
+    withExtension (ext:string): Path {
+        if (ext[0] !== '.') { ext = `.${ext}` }
+
+        let newPath = this.pathString.replace(this.extname, ext)
+        return new Path(newPath)
+    }
 
     pop(): Path {
         var parts = this.pathParts
@@ -43,8 +59,9 @@ class Path
         return new Path(parts)
     }
 
-    push(str:string): Path {
-        return new Path(path.join(this.pathString, str))
+    push(...paths:string[]): Path {
+        let newPath = path.join(...[this.pathString].concat(paths))
+        return new Path(newPath)
     }
 }
 

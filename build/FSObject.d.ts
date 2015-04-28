@@ -11,7 +11,7 @@ declare module "fs-objects/FSObject"
     class FSObject {
         path: Path;
         type: common.Type;
-        constructor(p: Path, type: common.Type);
+        constructor(p: Path|string, type: common.Type);
         basename: string;
         extname: string;
         dirname: string;

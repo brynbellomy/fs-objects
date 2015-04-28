@@ -7,14 +7,13 @@ var $fs = whenNode.liftAll(fs)
 
 import FSObject = require('./FSObject')
 import Path     = require('./FSPath')
-import common     = require('./common')
-import Type = common.Type
+import {Type} from './common'
 
 
 
 class File extends FSObject
 {
-    constructor (path:Path) {
+    constructor (path:Path|string) {
         super(path, Type.File)
     }
 
@@ -39,3 +38,5 @@ class File extends FSObject
 }
 
 export = File
+
+

@@ -8,7 +8,7 @@ declare module "fs-objects/File"
 
     export = File;
     class File extends FSObject {
-        constructor(path: Path);
+        constructor(path: Path|string);
         private _contents;
         contents: Buffer;
         loadContents(force?: boolean): when.Promise<Buffer>;

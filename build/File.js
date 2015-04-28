@@ -9,12 +9,11 @@ var when = require('when');
 var whenNode = require('when/node');
 var $fs = whenNode.liftAll(fs);
 var FSObject = require('./FSObject');
-var common = require('./common');
-var Type = common.Type;
+var common_1 = require('./common');
 var File = (function (_super) {
     __extends(File, _super);
     function File(path) {
-        _super.call(this, path, Type.File);
+        _super.call(this, path, common_1.Type.File);
         this._contents = null;
     }
     Object.defineProperty(File.prototype, "contents", {

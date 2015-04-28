@@ -1,6 +1,6 @@
 {
 	"name": "fs-objects",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"main": "build/index.js",
 	"repository": "git://github.com/brynbellomy/fs-objects.git",
 	"homepage": "https://github.com/brynbellomy/fs-objects",

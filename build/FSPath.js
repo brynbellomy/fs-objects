@@ -39,13 +39,35 @@ var Path = (function () {
         enumerable: true,
         configurable: true
     });
+    Path.prototype.transposedToNewParentDir = function (parent) {
+        var p;
+        if (typeof parent === 'string') {
+            p = new Path(parent);
+        }
+        else {
+            p = parent;
+        }
+        return p.push(this.basename);
+    };
+    Path.prototype.withExtension = function (ext) {
+        if (ext[0] !== '.') {
+            ext = "." + ext;
+        }
+        var newPath = this.pathString.replace(this.extname, ext);
+        return new Path(newPath);
+    };
     Path.prototype.pop = function () {
         var parts = this.pathParts;
         parts.pop();
         return new Path(parts);
     };
-    Path.prototype.push = function (str) {
-        return new Path(path.join(this.pathString, str));
+    Path.prototype.push = function () {
+        var paths = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            paths[_i - 0] = arguments[_i];
+        }
+        var newPath = path.join.apply(path, [this.pathString].concat(paths));
+        return new Path(newPath);
     };
     return Path;
 })();

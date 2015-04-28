@@ -18,7 +18,10 @@ declare module "fs-objects/FSPath"
         basename: string;
         extname: string;
         dirname: string;
+        transposedToNewParentDir(parent: string|Path): Path;
+        withExtension(ext:string): Path;
         pop(): Path;
-        push(str: string): Path;
+        // push(str: string): Path;
+        push(...paths:string[]): Path;
     }
 }

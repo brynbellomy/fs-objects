@@ -11,11 +11,11 @@ var $fs = whenNode.liftAll(fs);
 var FSObject = require('./FSObject');
 var File = require('./File');
 var FileCollection = require('./FileCollection');
-var common = require('./common');
+var common_1 = require('./common');
 var Directory = (function (_super) {
     __extends(Directory, _super);
     function Directory(path) {
-        _super.call(this, path, common.Type.Directory);
+        _super.call(this, path, common_1.Type.Directory);
     }
     Directory.prototype.refresh = function () {
         _super.prototype.refresh.call(this);
@@ -62,7 +62,7 @@ var Directory = (function (_super) {
     Directory.prototype.filenamesToFileCollection = function (filenames) {
         var _this = this;
         var filepaths = filenames.map(function (filename) { return _this.subpath(filename); });
-        var fsobjs = common.createFSObjectsFromPathsSync(filepaths);
+        var fsobjs = common_1.createFSObjectsFromPathsSync(filepaths);
         var contents = {};
         for (var _i = 0; _i < fsobjs.length; _i++) {
             var fsobj = fsobjs[_i];
